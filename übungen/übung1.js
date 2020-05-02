@@ -4,27 +4,30 @@ var Boxes;
     var color;
     var x = 0;
     var y = 0;
-    for (var i = 0; i < n; i++) {
-        y += (i == 2) ? 20 : 50;
-        x = (x + 170) % 400;
-        switch (i) {
-            case 0:
-                color = "#ff0000";
+    debugger;
+    window.addEventListener("load", drawboxes);
+    function drawboxes() {
+        for (var i = 0; i < n; i++) {
+            y += (i == 2) ? 20 : 50;
+            x = (x + 170) % 400;
+            switch (i) {
+                case 0:
+                    color = "#ff0000";
+                    break;
+                case 1:
+                case 4:
+                    color = "#00ff00";
+                    break;
+                case 3:
+                    continue;
+                default:
+                    color = "#0000ff";
+            }
+            for (var _i = 0, _a = ["small", "medium", "small"]; _i < _a.length; _i++) {
+                var size = _a[_i];
+                createBox(color, x, y, size);
                 break;
-            case 1:
-            case 4:
-                color = "#00ff00";
-                break;
-            case 3:
-                continue;
-            default:
-                color = "#0000ff";
-        }
-        for (var _i = 0, _a = ["big", "medium", "small"]; _i < _a.length; _i++) {
-            var size = _a[_i];
-            createBox(color, x, y, size);
-            if (i == 4)
-                break;
+            }
         }
     }
     function createBox(_color, _x, _y, _size) {
