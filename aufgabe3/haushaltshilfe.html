@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="haushaltshilfe.css">
+	<script src="haushaltshilfe.js"></script>
+</head>
+
+<body>
+
+	<h1>Die Haushaltshilfe</h1> <br>
+
+<div id="change">
+<form>
+	<!-- Erledigung wählen -->
+	<fieldset>
+		<p>Wählen Sie unte folgenden Erledigungen:</p>
+		<input type="checkbox" name="einkaufen" value="einkaufen" id="check1" />
+		<label for="check1">Einkaufen</label>
+		<input type="checkbox" name="rasenmähen" value="rasenmähen" id="check2" />
+		<label for="check2">Rasenmähen</label>
+	</fieldset> <br> <br>
+
+	<!-- Erledigung Einkaufen -->
+	<fieldset>
+		<legend> Erledigung - Einkaufen </legend>
+		<p class="bold">Artikel
+			<span class="z1">Menge</span>
+			<span class="z2">Einheit</span>
+			<span class="z3">Preis pro Einheit</span>
+			<span class="z5">Kosten</span>
+
+		</p>
+		<hr>
+		<p>Brot
+			<input class="z1" type="text" name="Datalist" list="options" placeholder="       ...choose ammount" />
+			<datalist  id="options">
+				<option value="0,5 kg"> </option>
+				<option value="1 kg"> </option>
+				<option value="1,5 kg"> </option>
+				<option value="2 kg"> </option>
+				<option value="3 kg"> </option>
+			
+			</datalist>
+
+			<span class="z2">Kilogramm</span>
+			<span class="z3">3,00€</span>
+			<span class="shoppingcosts" id="shopping1"> ...............</span>
+		</p>
+
+		<hr>
+		<p>Äpfel
+			<span class="z1">
+				<input type="radio" name="Radiogroup" value="radio1" id="radio1" />
+				<label for="radio1">2</label>
+				<input type="radio" name="Radiogroup" value="radio2" id="radio2" />
+				<label for="radio2">4</label>
+				<input type="radio" name="Radiogroup" value="radio3" id="radio3" />
+				<label for="radio3">6</label>
+			</span>
+			<span class="z2">Stück</span>
+			<span class="z3">0,30€</span>
+			<span class="shoppingcosts" id="shopping2"> ...............</span>
+		</p>
+		<hr>
+
+		<p>Wasser
+			<span class="z1">
+				1L<input type="range" name="Slider" min="0" max="20" step="1" value="0" />20L
+			</span>
+			<span class="z2">Liter</span>
+			<span class="z3">0,40€</span>
+			<span class="shoppingcosts" id="shopping3"> ...............</span>
+		</p>
+		<hr>
+
+		<p>Grundgebühr: <span class="z5">10,00 €</span></p>
+
+		<hr>
+		<p>Gesamt <span class="shoppingcosts" id="shopping4"> ...............</span> </p>
+	</fieldset> <br> <br>
+
+
+	<!-- Erledigung Rasenmähen -->
+	<fieldset>
+		<legend> Erledigung - Rasenmähen</legend>
+		<p>Geben Sie hier die ungefähre Rasenfläche in Quadratmetern an</p>
+		Rasenfläche: <input type="text" name="Text" placeholder="             .... z.B. 80" required />
+		<hr>
+		<p>Preis pro Quadratmeter:
+			<span class="z2">0,10 €</span>
+		</p>
+		<hr>
+		<p>Grundgebühr:
+			<span class="z2">10,00 €</span>
+		</p>
+		<hr>
+		<p>Gesamt:
+			<span id="mowing1">..............</span>
+		</p>
+
+	</fieldset> <br> <br>
+</form>
+</div>
+
+	<!-- Übersicht -->
+	<fieldset>
+		<legend>Übersicht der gewählten Dienste</legend>
+		<p>Erledigung - Einkaufen:
+			<span class="overviewcosts" id="overview1">.............</span>
+		</p>
+		<hr>
+
+		<p>Erledigung - Rasenmähen:
+			<span class="overviewcosts" id="overview2">.............</span>
+		</p>
+		<hr>
+
+		<p>Gesamtkosten:
+			<span class="overviewcosts" id="overview3">.............</span>
+		</p>
+	</fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<br> <br> <br> <br> <br> <br> <br>
+
+
+
+	<!-- <fieldset id="fsSelection">
+		<legend> Selection </legend>
+		Datalist
+		<input type="text" name="Datalist" list="options" placeholder="what to buy?" />
+		<datalist id="options">
+			<option value="Butter"> </option>
+			<option value="Milk"> </option>
+			<option value="Flour"> </option>
+			<option value="Sugar"> </option>
+			<option value="Eggs"> </option>
+			<option value="Salt"> </option>
+			<option value="Bread"> </option>
+		</datalist>
+		<hr />
+		<input type="radio" name="Radiogroup" value="radio1" id="radio1" />
+		<label for="radio1">Radio Button 1</label>
+		<input type="radio" name="Radiogroup" value="radio2" id="radio2" />
+		<label for="radio2">Radio Button 2</label>
+		<input type="radio" name="Radiogroup" value="radio3" id="radio3" />
+		<label for="radio3">Radio Button 3</label>
+		<hr />
+		<legend> Checkbox Group </legend>
+		<input type="checkbox" name="Checkbox1" value="check1" id="check1" />
+		<label for="check1">Checkbox 1</label>
+		<input type="checkbox" name="Checkbox2" value="check2" id="check2" />
+		<label for="check2">Checkbox 2</label>
+		<input type="checkbox" name="Checkbox3" value="check3" id="check3" />
+		<label for="check3">Checkbox 3</label>
+		<hr />
+		Select Box
+		<select name="Select" id="select">
+			<optgroup label="OptGroup1"></optgroup>
+			<option value="option1">First Option</option>
+			<option value="option2" selected>Second Option</option>
+			<optgroup label="OptGroup2"></optgroup>
+			<option value="option3">Third Option</option>
+			<option value="option4">Fourth Option</option>
+		</select>
+	</fieldset>
+
+
+
+	<fieldset id="fsSpecial">
+		<legend> Special </legend>
+		Slider
+		<input type="range" name="Slider" min="0" max="1" step="0.1" value="0" />
+		<hr />
+		Stepper
+		<input type="number" name="Stepper" step="0.1" min="-1" max="1" value="0" />
+		<hr />
+		Colorpicker
+		<input type="color" name="Color" placeholder="red" id="color" value="#ff0000">
+		<hr />
+		Date
+		<input type="date" name="Date" />
+	</fieldset>
+
+	<fieldset id="fsText">
+		<legend> Text-Input </legend>
+		Simple
+		<input type="text" name="Text" placeholder="type here" required />
+		<hr />
+		Password
+		<input type="password" name="Password" placeholder="type password here" />
+		<hr />
+		Mail
+		<input type="email" name="Mail" placeholder="place @ between" />
+		<hr />
+		Url
+		<input type="url" name="Url" placeholder="start with http:" />
+		<hr />
+		Pattern
+		<input type="text" name="Pattern" pattern="[0-9]{3}" placeholder="use RegEx" />
+		<hr />
+		Area
+		<textarea name="Area" rows="3" placeholder="long text here"></textarea>
+	</fieldset>
+
+	<fieldset id="fsOutput">
+		<legend> Output </legend>
+		Progress
+		<progress value="0" max="1"> </progress>
+		<hr />
+		Meter
+		<meter value="0" min="-1" max="1"> </meter>
+		<hr />
+		Output
+		<output name="out">Color picked</output>
+	</fieldset>
+
+
+ -->
+
+
+</body>
+
+</html>
