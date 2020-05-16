@@ -1,3 +1,4 @@
+"use strict";
 var openCardsDOMElement;
 //EventListener
 window.addEventListener("load", function () {
@@ -32,7 +33,7 @@ function addTamplateInput() {
     addTamplate(newWord);
 }
 function addTamplate(_newWord) {
-    var tamplate = document.createElement("div");
+    let tamplate = document.createElement("div");
     tamplate.innerHTML = "<p>" + _newWord + "</p>";
     openCardsDOMElement.appendChild(tamplate);
     console.log(_newWord);

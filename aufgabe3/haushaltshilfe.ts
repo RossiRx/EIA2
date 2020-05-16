@@ -10,6 +10,8 @@ function handleload(_event: Event): void {
     let priceMowing: number = 5;
     let priceSquare: number = 0.1;
 
+    
+
     let fieldsets: NodeListOf<HTMLFieldSetElement> = document.querySelectorAll("fieldset");
 
     for (let i: number = 0; i < fieldsets.length; i++) {
@@ -22,6 +24,8 @@ function handleload(_event: Event): void {
 function handleChange(_event: Event): void {
     console.log("handle change");
     drawUnits(_event);
+    abc();
+    
 }
 
 function drawUnits(_event: Event): void {
@@ -46,3 +50,6 @@ function drawUnits(_event: Event): void {
 //         console.log("Input: " + target.name + " = " + target.value, _event);
 
 }
+
+
+
