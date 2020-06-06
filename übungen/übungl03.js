@@ -19,7 +19,7 @@ var L03_FormElements;
             console.warn("Change: " + target.name + " = " + target.value, _event);
         else
             console.log("Input: " + target.name + " = " + target.value, _event);
-        // Handling checkbox
+        // Handling checkb
         if (target.type == "checkbox")
             console.log("Checked: " + target.name + " = " + target.checked);
         // Slider response
