@@ -1,4 +1,4 @@
-namespace virus_l08 {
+namespace virus_l09 {
 
     interface Vector {
         x: number;
@@ -6,7 +6,12 @@ namespace virus_l08 {
     }
 
     window.addEventListener("load", handleLoad);
-    let crc: CanvasRenderingContext2D;
+
+    export let crc: CanvasRenderingContext2D;
+    let particlesArray: Particle[] = [];
+   
+    
+
 
     function handleLoad(): void {
         console.log("init");
@@ -15,21 +20,27 @@ namespace virus_l08 {
             return;
         crc = <CanvasRenderingContext2D>canvas.getContext("2d");
 
+        //createParticles(5);
+
         drawBackground(canvas);
 
         drawCells({ x: 120, y: 400 }, { x: 27, y: 200 });
 
-        drawDefense({ x: 50, y: 400 }, { x: 70, y: 100 });
+        drawDefense({ x: 50, y: 400 }, { x: 70, y: 200 });
 
-        drawVirus({ x: 100, y: 400 }, { x: 220, y: 50 });
+        drawVirus({ x: 100, y: 400 }, { x: 220, y: 200 });
 
-        drawParticles({ x: 650, y: 400 }, { x: 0, y: 30 });
+        //drawParticles({ x: 650, y: 400 }, { x: 0, y: 30 });
 
-        
+        createParticles(5);
+
+        window.setInterval(update, 20);
+
     }
 
+
     function drawBackground(_canvas: HTMLCanvasElement): void {
-        console.log("background");
+        //console.log("background");
         let pattern: CanvasRenderingContext2D = <CanvasRenderingContext2D>document.createElement("canvas").getContext("2d");
         pattern.canvas.width = 40;
         pattern.canvas.height = 20;
@@ -53,16 +64,16 @@ namespace virus_l08 {
     }
 
     function drawCells(_position: Vector, _area: Vector): void {
-        console.log("cells");
+        //consconsole.log("cells");
         let randomRotation: number = Math.random() * 10;
-        let r1: number = 250;
+        let r1: number = 240;
         let r2: number = 30;
         let gradientCells: CanvasGradient = crc.createRadialGradient(0, 0, r1, 0, 0, r2);
 
         let nCells: number = 7;
         let cellPath: Path2D = new Path2D();
 
-        console.log(randomRotation);
+        //console.log(randomRotation);
 
         gradientCells.addColorStop(0, "rgb(49, 49, 29)");
         gradientCells.addColorStop(0.4, "rgb(240, 240, 197)");
@@ -86,6 +97,7 @@ namespace virus_l08 {
             crc.restore();
         }
 
+        crc.restore();
 
     }
 
@@ -95,19 +107,22 @@ namespace virus_l08 {
         let nDefense: number = 10;
         let defensePath: Path2D = new Path2D();
 
-        let r1: number = 170;
+        crc.save();
+        crc.translate(_area.x, _area.y);
+
+        let r1: number = 280;
         let r2: number = 15;
         let gradientDefense: CanvasGradient = crc.createRadialGradient(0, 0, r1, 0, 0, r2);
 
-        gradientDefense.addColorStop(0, "rgb(0, 0, 0)");
-        gradientDefense.addColorStop(0.4, "rgb(79, 68, 200)");
+        gradientDefense.addColorStop(1, "rgb(0, 0, 0)");
+        gradientDefense.addColorStop(0, "rgb(79, 68, 200)");
+
+
+
 
         crc.fillStyle = gradientDefense;
         defensePath.arc(_area.x, _area.y, r2, 0, 2 * Math.PI);
         // void ctx.arc(x, y, radius, startAngle, endAngle [, anticlockwise]);
-
-        crc.save();
-        crc.translate(_area.x, _area.y);
 
         for (let drawn: number = 0; drawn < nDefense; drawn++) {
             crc.save();
@@ -118,10 +133,12 @@ namespace virus_l08 {
             crc.restore();
 
         }
+
+        crc.restore();
     }
 
     function drawVirus(_position: Vector, _area: Vector): void {
-        console.log("virus");
+        //console.log("virus");
 
 
         let nVirus: number = 7;
@@ -134,6 +151,7 @@ namespace virus_l08 {
         crc.save();
         crc.translate(_area.x, _area.y);
 
+
         for (let drawn: number = 0; drawn < nVirus; drawn++) {
             crc.save();
             let x: number = (Math.random() - 0.5) * _position.x;
@@ -143,34 +161,57 @@ namespace virus_l08 {
             crc.restore();
         }
 
+        crc.restore();
+       
+    }
+
+    function createParticles(_nParticles: number): void {
+        console.log("Create asteroids");
+        for (let i: number = 0; i < _nParticles; i++) {
+            let particle: Particle = new Particle();
+            particlesArray.push(particle);
+        }
+    }
+
+    function update(): void {
+       
+
+        for (let particle of particlesArray) {
+            particle.move(1 / 50);
+            particle.draw();
+            
+        }
+       
     }
 
 
 
-    function drawParticles(_position: Vector, _area: Vector): void {
-        console.log("particles");
 
-        let nParticles: number = 250;
-        let particlesPath: Path2D = new Path2D();
+}
 
-        crc.fillStyle = "rgba(202, 183, 183, 0.1)"; 
-        particlesPath.arc(_area.x, _area.y, 25, 0, 2 * Math.PI);
-        // void ctx.arc(x, y, radius, startAngle, endAngle [, anticlockwise]);
 
+/* function drawParticles(_position: Vector, _area: Vector): void {
+    //console.log("particles");
+
+    let nParticles: number = 250;
+    let particlesPath: Path2D = new Path2D();
+
+    crc.fillStyle = "rgba(202, 183, 183, 0.1)";
+    particlesPath.arc(_area.x, _area.y, 25, 0, 2 * Math.PI);
+    // void ctx.arc(x, y, radius, startAngle, endAngle [, anticlockwise]);
+
+    crc.save();
+    crc.translate(_area.x, _area.y);
+
+    for (let drawn: number = 0; drawn < nParticles; drawn++) {
         crc.save();
-        crc.translate(_area.x, _area.y);
-
-        for (let drawn: number = 0; drawn < nParticles; drawn++) {
-            crc.save();
-            let x: number = (Math.random() - 0.5) * _position.x;
-            let y: number = - Math.random() * _position.y;
-            crc.translate(x, y);
-            crc.fill(particlesPath);
-            crc.restore();
-        }
-
-
-
+        let x: number = (Math.random() - 0.5) * _position.x;
+        let y: number = - Math.random() * _position.y;
+        crc.translate(x, y);
+        crc.fill(particlesPath);
+        crc.restore();
     }
 
 }
+*/
+

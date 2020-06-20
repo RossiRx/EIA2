@@ -1,5 +1,5 @@
 
-var openCardsDOMElement: HTMLElement;
+/* var openCardsDOMElement: HTMLElement;
 
 //EventListener
 
@@ -51,3 +51,4 @@ function addTamplate (_newWord: string): void {
     console.log(_newWord);
 }
 
+ */

@@ -1,4 +1,4 @@
-namespace L04_CocktailBar {
+/* namespace L04_CocktailBar {
 
     export function generateContent(_data: Data): void {
 
@@ -53,4 +53,4 @@ namespace L04_CocktailBar {
         }
         return group;
     }
-}
+} */

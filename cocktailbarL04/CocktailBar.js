@@ -4,7 +4,8 @@ var L04_CocktailBar;
     window.addEventListener("load", handleLoad);
     function handleLoad(_event) {
         console.log("Init");
-        L04_CocktailBar.generateContent(L04_CocktailBar.data);
+        /*  generateContent(data);
+  */
         let form = document.querySelector("div#form");
         let slider = document.querySelector("input#amount");
         form.addEventListener("change", handleChange);

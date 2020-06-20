@@ -1,0 +1,1 @@
+namespace virus_l09 { }
