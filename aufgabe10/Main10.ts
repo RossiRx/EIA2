@@ -1,4 +1,4 @@
-namespace virus_l09 {
+namespace virus_l10 {
 
     interface Vector {
         x: number;
@@ -8,9 +8,9 @@ namespace virus_l09 {
     window.addEventListener("load", handleLoad);
 
     export let crc: CanvasRenderingContext2D;
-    let particlesArray: Particle[] = [];
-   // let backgroundImage: ImageData;
-    
+    let moveableArray: Particle[] = [];
+    let backgroundImage: ImageData;
+   
 
 
     function handleLoad(): void {
@@ -20,7 +20,6 @@ namespace virus_l09 {
             return;
         crc = <CanvasRenderingContext2D>canvas.getContext("2d");
 
-        //createParticles(5);
 
         drawBackground(canvas);
 
@@ -28,11 +27,11 @@ namespace virus_l09 {
 
         drawDefense({ x: 50, y: 400 }, { x: 70, y: 200 });
 
-        drawVirus({ x: 100, y: 400 }, { x: 220, y: 200 });
+        createVirus(20);
 
         //drawParticles({ x: 650, y: 400 }, { x: 0, y: 30 });
 
-        createParticles(5);
+        createParticles(150);
 
         window.setInterval(update, 20);
 
@@ -135,60 +134,44 @@ namespace virus_l09 {
         }
 
         crc.restore();
+        backgroundImage = crc.getImageData(0, 0, crc.canvas.width, crc.canvas.height);
     }
 
-    function drawVirus(_position: Vector, _area: Vector): void {
-        //console.log("virus");
-
-
-        let nVirus: number = 7;
-        let virusPath: Path2D = new Path2D();
-
-        crc.fillStyle = "green";
-        virusPath.arc(_area.x, _area.y, 25, 0, 2 * Math.PI);
-        // void ctx.arc(x, y, radius, startAngle, endAngle [, anticlockwise]);
-
-        crc.save();
-        crc.translate(_area.x, _area.y);
-
-
-        for (let drawn: number = 0; drawn < nVirus; drawn++) {
-            crc.save();
-            let x: number = (Math.random() - 0.5) * _position.x;
-            let y: number = - Math.random() * _position.y;
-            crc.translate(x, y);
-            crc.fill(virusPath);
-            crc.restore();
+    function createVirus(_nVirus: number): void {
+        console.log("Create Virus");
+        for (let i: number = 0; i < _nVirus; i++) {
+            let virus: Virus = new Virus();
+            moveableArray.push(virus);
         }
-
-        crc.restore();
-       
     }
 
     function createParticles(_nParticles: number): void {
-        console.log("Create asteroids");
+        console.log("Create Particles");
         for (let i: number = 0; i < _nParticles; i++) {
-            let particle1: Particle = new Particle();
-            particlesArray.push(particle1);
+            let particle: Particle = new Particle();
+            moveableArray.push(particle);
         }
-       // backgroundImage = crc.getImageData(0, 0, crc.canvas.width, crc.canvas.height);
     }
 
     function update(): void {
        
-        //crc.putImageData(backgroundImage, 0, 0);
+        crc.putImageData(backgroundImage, 0, 0);
 
-        for (let particle of particlesArray) {
-            particle.move(1 / 50);
-            particle.draw();
+        for (let virus of moveableArray) {
             
-        }
+            virus.move(1 / 400);
+            virus.draw();
        
     }
 
+        for (let particle of moveableArray) {
+            particle.move(1 / 100);
+            particle.draw();
+            
+        }
 
-
-
+        
+  }
 }
 
 
@@ -217,3 +200,32 @@ namespace virus_l09 {
 }
 */
 
+
+/* function drawVirus(_position: Vector, _area: Vector): void {
+    //console.log("virus");
+
+
+    let nVirus: number = 7;
+    let virusPath: Path2D = new Path2D();
+
+    crc.fillStyle = "green";
+    virusPath.arc(_area.x, _area.y, 25, 0, 2 * Math.PI);
+    // void ctx.arc(x, y, radius, startAngle, endAngle [, anticlockwise]);
+
+    crc.save();
+    crc.translate(_area.x, _area.y);
+
+
+    for (let drawn: number = 0; drawn < nVirus; drawn++) {
+        crc.save();
+        let x: number = (Math.random() - 0.5) * _position.x;
+        let y: number = - Math.random() * _position.y;
+        crc.translate(x, y);
+        crc.fill(virusPath);
+        crc.restore();
+    }
+
+    crc.restore();
+   
+    
+} */
