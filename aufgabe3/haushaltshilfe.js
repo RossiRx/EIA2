@@ -17,7 +17,7 @@ function handleload(_event) {
 function handleChange(_event) {
     console.log("handle change");
     drawUnits(_event);
-    abc();
+    //abc();
 }
 function drawUnits(_event) {
     let formData = new FormData(document.forms[0]);

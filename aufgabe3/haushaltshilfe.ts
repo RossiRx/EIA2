@@ -24,7 +24,7 @@ function handleload(_event: Event): void {
 function handleChange(_event: Event): void {
     console.log("handle change");
     drawUnits(_event);
-    abc();
+    //abc();
     
 }
 
