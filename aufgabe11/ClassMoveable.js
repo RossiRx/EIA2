@@ -24,8 +24,8 @@ var virus_l11;
             if (this.position.y > virus_l11.crc.canvas.height)
                 this.position.y -= virus_l11.crc.canvas.height;
         }
+        //console.log("Moveable draw");
         draw() {
-            //console.log("Moveable draw");
         }
     }
     virus_l11.Moveable = Moveable;

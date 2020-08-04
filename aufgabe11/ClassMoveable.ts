@@ -37,8 +37,8 @@ namespace virus_l11 {
             this.position.y -= crc.canvas.height;
         }
 
-        public draw(): void {
-           //console.log("Moveable draw");
+        //console.log("Moveable draw");
+            public draw(): void {
         }
     }
 }
